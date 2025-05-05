@@ -1,25 +1,5 @@
-import qrcode;
-
-def generate_qr_code(data, filename):
-    # Create a QR Code instance
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_H,
-        box_size=10,
-        border=4,
-    )
-
-    # Add data to the QR Code
-    qr.add_data(data)
-    qr.make(fit=True)
-
-    # Create an image from the QR Code instance
-    img = qr.make_image(fill_color="black", back_color="white")
-
-    # Save the image to a file
-    img.save(filename)
-
-
+from generation import generate_qr_code
+from file import save_qrfile
 
 
 # give argument to main execution
@@ -33,6 +13,13 @@ if __name__ == "__main__":
     data = sys.argv[1]
     filename = sys.argv[2]
 
-    generate_qr_code(data, filename)
-    print(f"QR Code generated and saved as {filename}")
+    code_file = generate_qr_code(data, filename)
+    print(f"QR Code generated as {filename}")
+
+    # Save the QR Code image to a file using the file_download function
+    # asking for the file name to be saved in the system
+    file_name = input("Enter the file name to save the QR code (default: example_qr.png): ")
+    save_qrfile(code_file, file_name)
+
+
 
