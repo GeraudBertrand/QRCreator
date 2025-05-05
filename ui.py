@@ -111,7 +111,7 @@ class QRApp :
             messagebox.showerror("Erreur", "Aucun QR Code à enregistrer")
 
 
-if __name__ == "__main__":
+def launch_ui():
     root = tk.Tk()
     app = QRApp(root)
     root.mainloop()
